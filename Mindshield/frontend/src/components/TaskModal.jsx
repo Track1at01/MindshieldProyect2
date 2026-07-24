@@ -9,9 +9,9 @@ const TaskModal = ({ task, projectId, members, onClose, onSave }) => {
         description: '',
         priority: 'medium',
         status: 'pending',
-        due_date: '',
-        assignee_id: '',
-        tags: ''
+        due_date: undefined,
+        assignee_id: undefined,
+        tags: undefined
     });
 
     useEffect(() => {
@@ -35,7 +35,7 @@ const TaskModal = ({ task, projectId, members, onClose, onSave }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!form.title.trim()) return;
-        
+
         try {
             if (task) {
                 await api.put(`/api/tasks/${task.id}`, form);

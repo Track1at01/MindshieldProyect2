@@ -14,7 +14,7 @@ class Project(Base):
     owner = relationship("User", back_populates="owned_projects", foreign_keys=[owner_id])
     tasks = relationship("Task", back_populates="project", cascade="all, delete-orphan")
     activities = relationship("Activity", back_populates="project", cascade="all, delete-orphan")
-    project_memberships = relationship("ProjectMember", back_populates="project", cascade="all, delete-orphan")
+    members = relationship("ProjectMember", back_populates="project", cascade="all, delete-orphan")
 
 class ProjectMember(Base):
     __tablename__ = "project_members"
@@ -22,5 +22,5 @@ class ProjectMember(Base):
     project_id = Column(Integer, ForeignKey("projects.id", ondelete="CASCADE"), primary_key=True)
     user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), primary_key=True)
 
-    project = relationship("Project", back_populates="project_memberships")
+    project = relationship("Project", back_populates="members")
     user = relationship("User", back_populates="project_memberships")

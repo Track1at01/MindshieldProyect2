@@ -56,17 +56,20 @@ const ProjectBoard = () => {
     const handleDragEnd = async (event) => {
         const { active, over } = event;
         setActiveTask(null);
-        
+
         if (!over) return;
-        
+
+        const statusName = typeof over.id == "string" ? over.id : ["pending", "in_progress", "done"][over.id - 1]
+
         const taskId = active.id;
-        const newStatus = over.id;
+        console.log("OVER::::", statusName, over.id)
+        const newStatus = statusName;
         const task = tasks.find(t => t.id === taskId);
-        
+
         if (!task || task.status === newStatus) return;
-        
+
         setTasks(prev => prev.map(t => t.id === taskId ? { ...t, status: newStatus } : t));
-        
+
         try {
             await api.put(`/api/tasks/${taskId}`, { status: newStatus });
             send('task_update', { taskId, status: newStatus });
@@ -89,7 +92,7 @@ const ProjectBoard = () => {
         setFilteredTasks(result);
     };
 
-    const getTasksByStatus = (status) => 
+    const getTasksByStatus = (status) =>
         filteredTasks.filter(t => t.status === status).sort((a, b) => a.position - b.position);
 
     if (!project) return <div>Cargando...</div>;
