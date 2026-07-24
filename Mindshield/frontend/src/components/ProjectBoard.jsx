@@ -65,14 +65,13 @@ const ProjectBoard = () => {
         
         if (!task || task.status === newStatus) return;
         
-        // Optimistic update
         setTasks(prev => prev.map(t => t.id === taskId ? { ...t, status: newStatus } : t));
         
         try {
             await api.put(`/api/tasks/${taskId}`, { status: newStatus });
             send('task_update', { taskId, status: newStatus });
         } catch {
-            loadTasks(); // Rollback on error
+            loadTasks();
         }
     };
 

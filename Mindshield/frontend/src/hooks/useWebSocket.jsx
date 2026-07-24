@@ -1,6 +1,6 @@
 import { useEffect, useRef, useCallback } from 'react';
 
-const WS_URL = process.env.REACT_APP_WS_URL || 'ws://localhost:8000';
+const WS_URL = import.meta.env.VITE_API_URL || 'ws://localhost:8000';
 
 export const useWebSocket = (projectId, onMessage) => {
     const ws = useRef(null);
