@@ -5,7 +5,7 @@ from app.database import get_db
 from app.schemas.task import TaskCreate, TaskUpdate, TaskResponse
 from app.models.user import User
 from app.models.task import Task, TaskStatus
-from app.services.task import create_task, get_task, update_task, delete_task
+from app.services.tasks import create_task, get_task, update_task, delete_task
 from app.dependencies import get_current_user
 from app.exceptions import NotFoundException
 

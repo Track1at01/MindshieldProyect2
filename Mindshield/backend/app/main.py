@@ -1,11 +1,15 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from sqlalchemy.exc import OperationalError
 from app.database import engine, Base
 from app.routers import auth_router, projects_router, tasks_router, comments_router, websocket_router
 from app.exceptions import KanbanException
 
-# Create tables
-Base.metadata.create_all(bind=engine)
+# Create tables if the database is available
+try:
+    Base.metadata.create_all(bind=engine)
+except OperationalError:
+    pass
 
 app = FastAPI(title="Kanban API", version="1.0.0")
 

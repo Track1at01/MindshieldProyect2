@@ -5,7 +5,7 @@ from app.database import get_db
 from app.schemas.comment import CommentCreate, CommentResponse
 from app.models.comment import Comment
 from app.models.activity import Activity
-from app.services.task import get_task
+from app.services.tasks import get_task
 from app.dependencies import get_current_user
 from app.models.user import User
 

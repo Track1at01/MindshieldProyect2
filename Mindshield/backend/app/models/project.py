@@ -6,8 +6,9 @@ project_members = Table(
     "project_members",
     Base.metadata,
     Column("project_id", Integer, ForeignKey("projects.id", ondelete="CASCADE"), primary_key=True),
-    Column("user_id", Integer, ForeignKey("users.id", ondelete="CASCADE"), primary_key=True)
+    Column("user_id", Integer, ForeignKey("users.id", ondelete="CASCADE"), primary_key=True),
 )
+
 
 class Project(Base):
     __tablename__ = "projects"
@@ -23,11 +24,5 @@ class Project(Base):
     members = relationship("User", secondary=project_members, back_populates="project_memberships")
     activities = relationship("Activity", back_populates="project", cascade="all, delete-orphan")
 
-class ProjectMember(Base):
-    __tablename__ = "project_members"
-    
-    project_id = Column(Integer, ForeignKey("projects.id", ondelete="CASCADE"), primary_key=True)
-    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), primary_key=True)
-    
-    project = relationship("Project", back_populates="project_memberships")
-    user = relationship("User", back_populates="project_memberships")
+# The association table is already defined above as project_members.
+# Keeping a separate ORM class for it is unnecessary and causes duplicate table registration.
