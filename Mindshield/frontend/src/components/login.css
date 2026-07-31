@@ -4,14 +4,16 @@
   justify-content: center;
   align-items: center;
   padding: 2rem;
-  background: radial-gradient(circle at top, rgba(233, 69, 96, 0.18), transparent 30%), linear-gradient(180deg, #141418 0%, #121212 100%);
+  background: radial-gradient(circle at top,
+   rgba(161, 9, 34, 0.404), transparent 30%), 
+  linear-gradient(180deg, #141418 0%, #11111100 100%);
 }
 
 .auth-card {
   width: min(420px, 100%);
   background: rgba(248, 5, 5, 0.05);
   border: 1px solid #c70b0b;
-  border-radius: 100px;
+  border-radius: 0px !important;
   padding: 2rem;
   box-shadow: 0px 0px 12px rgba(211, 26, 26, 0.644);
 }

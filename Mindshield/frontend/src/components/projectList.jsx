@@ -41,8 +41,7 @@ const ProjectList = () => {
         <div className="page-shell">
             <div className="page-header">
                 <div>
-                    <h1 className="page-title">Mis Proyectos</h1>
-                    <p className="subtitle">Administra tus tableros y crea nuevas iniciativas con estilo.</p>
+                    <h1 className="page-title">Tus Proyectos</h1>
                 </div>
             </div>
 
@@ -78,7 +77,7 @@ const ProjectList = () => {
                         </div>
                         <p className="subtitle project-card-description">{project.description}</p>
                         <div className="meta-row project-meta-row">
-                            Creado: {new Date(project.created_at).toLocaleDateString()}
+                            Fecha de creación: {new Date(project.created_at).toLocaleDateString()}
                         </div>
                     </div>
                 ))}

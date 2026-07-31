@@ -11,9 +11,9 @@
   justify-content: space-between;
   gap: 1rem;
   padding: 1.25rem 1.5rem;
-  border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--border);
+ border-radius: 0px !important;
+   background: rgba(248, 5, 5, 0.05);
+  border: 1px solid #c70b0b4f;
   box-shadow: 0 32px 80px rgba(0, 0, 0, 0.24);
   backdrop-filter: blur(18px);
   margin-bottom: 1.5rem;
@@ -30,7 +30,6 @@
 }
 
 .brand::before {
-  content: '🛡️';
   font-size: 1.15rem;
 }
 
@@ -42,9 +41,19 @@
 }
 
 .content-panel {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+   background: rgba(248, 5, 5, 0.05);
+ border: 1px solid #c70b0b4d;
+  border-radius: 0px !important;
   padding: 1.5rem;
   min-height: calc(100vh - 120px);
+}
+
+.input-field{
+  width: 100%;
+  padding: 0.95rem 1rem;
+    border-radius: 0px !important;
+  border: 1px solid #2a2a34;
+  background: #121214a8;
+  color: var(--text);
+  transition: border-color 0.24s ease, background-color 0.24s ease, box-shadow 0.24s ease;
 }

@@ -119,13 +119,13 @@ const ProjectBoard = () => {
                         onClick={() => setShowInvite(!showInvite)}
                         className={showInvite ? 'button button-secondary' : 'button button-primary'}
                     >
-                        {showInvite ? 'Cancelar' : '👥 Invitar'}
+                        {showInvite ? 'Cancelar' : 'Invitar colaborador'}
                     </button>
                     <button
                         onClick={() => { setSelectedTask(null); setShowModal(true); }}
                         className="button button-secondary"
                     >
-                        + Nueva Tarea
+                        Añadir nueva tarea
                     </button>
                 </div>
             </div>

@@ -58,7 +58,7 @@ img {
 }
 
 
-.input-field,
+
 .select-field,
 .textarea-field {
   width: 100%;
@@ -108,12 +108,14 @@ img {
 }
 
 .button-danger {
-  background: var(--danger);
-  color: #fff;
+  border-radius: 0px !important;
+   background: rgba(248, 5, 5, 0.89);
+  border: 1px solid #c70b0b4f;
+  color: white;
 }
 
 .button-danger:hover {
-  background: #ff5873;
+  background: #7c0015;
 }
 
 .button-ghost {
@@ -157,9 +159,8 @@ img {
 }
 
 .card {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+  background: rgba(248, 5, 5, 0.05);
+  border: 1px solid #c411114d;
   padding: 1.3rem;
   box-shadow: var(--shadow);
   transition: transform 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease;
@@ -240,7 +241,6 @@ textarea::placeholder {
   .topbar,
   .content-panel,
   .card-panel,
-  .auth-card,
   .modal-panel {
     border-radius: 20px;
   }
