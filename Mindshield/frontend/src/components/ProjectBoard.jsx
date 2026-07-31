@@ -7,7 +7,7 @@ import { useWebSocket } from '../hooks/useWebSocket';
 import Column from './Column.jsx';
 import TaskCard from './TaskCard.jsx';
 import TaskModal from './TaskModal.jsx';
-import SearchFilter from './SearchFilter.jsx';
+import SearchFilter from './searchFilter.jsx';
 import InviteMember from './InviteMember.jsx';
 import './ProjectBoard.css';
 
