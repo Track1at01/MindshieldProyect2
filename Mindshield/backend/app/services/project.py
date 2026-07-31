@@ -9,7 +9,7 @@ def get_project(db: Session, project_id: int, user_id: int) -> Project:
     project = db.query(Project).filter(Project.id == project_id).first()
     if not project:
         raise NotFoundException("Project")
-    if project.owner_id != user_id and user_id not in [m.id for m in project.members]:
+    if project.owner_id != user_id and user_id not in [m.user_id for m in project.members]:
         raise ForbiddenException()
     return project
 
@@ -60,8 +60,14 @@ def add_member(db: Session, project_id: int, user_id: int, member_id: int):
     if not member:
         raise NotFoundException("User")
 
-    if member not in project.members:
-        project.members.append(member)
+    already_member = db.query(ProjectMember).filter(
+        ProjectMember.project_id == project_id,
+        ProjectMember.user_id == member_id
+    ).first()
+
+    if not already_member:
+        new_member = ProjectMember(project_id=project_id, user_id=member_id)
+        db.add(new_member)
         db.commit()
 
     return project

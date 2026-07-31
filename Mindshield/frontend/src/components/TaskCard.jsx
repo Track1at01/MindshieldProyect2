@@ -3,6 +3,7 @@ import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
+import './taskCard.css';
 
 const PRIORITY_COLORS = {
     low: '#2ecc71',
@@ -32,56 +33,35 @@ const TaskCard = ({ task, onClick }) => {
     return (
         <div
             ref={setNodeRef}
+            className="task-card"
+            data-priority={task.priority}
             style={{
                 ...style,
-                background: 'white',
-                padding: '1rem',
-                borderRadius: '6px',
-                boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
-                borderLeft: `4px solid ${PRIORITY_COLORS[task.priority] || '#999'}`,
                 cursor: onClick ? 'pointer' : 'grab'
             }}
             {...attributes}
             {...listeners}
             onClick={onClick}
         >
-            <div style={{ fontWeight: '600', marginBottom: '0.5rem' }}>{task.title}</div>
+            <div className="task-card-title">{task.title}</div>
             {task.description && (
-                <div style={{ fontSize: '0.875rem', color: '#666', marginBottom: '0.5rem', lineHeight: '1.4' }}>
+                <div className="task-card-description">
                     {task.description.substring(0, 100)}{task.description.length > 100 ? '...' : ''}
                 </div>
             )}
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.75rem' }}>
-                <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                    <span style={{
-                        background: PRIORITY_COLORS[task.priority],
-                        color: 'white',
-                        padding: '2px 8px',
-                        borderRadius: '12px',
-                        textTransform: 'uppercase',
-                        fontSize: '0.7rem'
-                    }}>
-                        {task.priority}
-                    </span>
-                    {task.tags && task.tags.split(',').map(tag => (
-                        <span key={tag} style={{
-                            background: '#e0e0e0',
-                            padding: '2px 6px',
-                            borderRadius: '4px',
-                            color: '#555'
-                        }}>
-                            {tag.trim()}
-                        </span>
-                    ))}
-                </div>
+            <div className="meta-row">
+                <span className="task-badge">{task.priority}</span>
+                {task.tags && task.tags.split(',').map(tag => (
+                    <span key={tag} className="tag-chip">{tag.trim()}</span>
+                ))}
                 {task.due_date && (
-                    <span style={{ color: isOverdue ? '#e74c3c' : '#999' }}>
+                    <span className="task-meta" style={{ color: isOverdue ? '#ff6b7f' : '#9fa4b6' }}>
                         {format(new Date(task.due_date), 'dd MMM', { locale: es })}
                     </span>
                 )}
             </div>
             {task.assignee && (
-                <div style={{ marginTop: '0.5rem', fontSize: '0.75rem', color: '#3498db' }}>
+                <div className="task-meta" style={{ marginTop: '0.5rem' }}>
                     👤 {task.assignee.username}
                 </div>
             )}

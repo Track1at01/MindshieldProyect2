@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './searchFilter.css';
 
 const SearchFilter = ({ onFilter, members }) => {
     const [filters, setFilters] = useState({ search: '', priority: '', assignee: '' });
@@ -10,26 +11,19 @@ const SearchFilter = ({ onFilter, members }) => {
     };
 
     return (
-        <div style={{
-            display: 'flex',
-            gap: '0.5rem',
-            background: 'white',
-            padding: '0.75rem',
-            borderRadius: '8px',
-            marginBottom: '1rem'
-        }}>
+        <div className="filter-panel">
             <input
                 name="search"
                 placeholder="Buscar tareas..."
                 value={filters.search}
                 onChange={handleChange}
-                style={{ flex: 2, padding: '0.5rem', border: '1px solid #ddd', borderRadius: '4px' }}
+                className="input-field flex-2"
             />
             <select
                 name="priority"
                 value={filters.priority}
                 onChange={handleChange}
-                style={{ flex: 1, padding: '0.5rem', border: '1px solid #ddd', borderRadius: '4px' }}
+                className="select-field flex-1"
             >
                 <option value="">Todas las prioridades</option>
                 <option value="low">Baja</option>
@@ -40,7 +34,7 @@ const SearchFilter = ({ onFilter, members }) => {
                 name="assignee"
                 value={filters.assignee}
                 onChange={handleChange}
-                style={{ flex: 1, padding: '0.5rem', border: '1px solid #ddd', borderRadius: '4px' }}
+                className="select-field flex-1"
             >
                 <option value="">Todos los responsables</option>
                 {members.map(m => (

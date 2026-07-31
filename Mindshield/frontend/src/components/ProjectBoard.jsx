@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { DndContext, closestCorners, DragOverlay } from '@dnd-kit/core';
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
@@ -8,6 +8,8 @@ import Column from './Column';
 import TaskCard from './TaskCard';
 import TaskModal from './TaskModal';
 import SearchFilter from './SearchFilter';
+import InviteMember from './InviteMember';
+import './ProjectBoard.css';
 
 const COLUMNS = [
     { id: 'pending', title: 'Pendiente', color: '#f39c12' },
@@ -23,6 +25,7 @@ const ProjectBoard = () => {
     const [activeTask, setActiveTask] = useState(null);
     const [selectedTask, setSelectedTask] = useState(null);
     const [showModal, setShowModal] = useState(false);
+    const [showInvite, setShowInvite] = useState(false);
 
     const loadTasks = useCallback(async () => {
         const res = await api.get(`/api/tasks?project_id=${id}`);
@@ -62,9 +65,13 @@ const ProjectBoard = () => {
         const statusName = typeof over.id == "string" ? over.id : ["pending", "in_progress", "done"][over.id - 1]
 
         const taskId = active.id;
-        console.log("OVER::::", statusName, over.id)
         const newStatus = statusName;
         const task = tasks.find(t => t.id === taskId);
+
+        if (Math.sqrt(event.delta.x * event.delta.x + event.delta.y * event.delta.y) < 10) {
+            setSelectedTask(task);
+            setShowModal(true);
+        }
 
         if (!task || task.status === newStatus) return;
 
@@ -98,20 +105,37 @@ const ProjectBoard = () => {
     if (!project) return <div>Cargando...</div>;
 
     return (
-        <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-                <h1>{project.name}</h1>
-                <button onClick={() => { setSelectedTask(null); setShowModal(true); }} style={{
-                    padding: '0.5rem 1rem',
-                    background: '#16213e',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '4px',
-                    cursor: 'pointer'
-                }}>
-                    + Nueva Tarea
-                </button>
+        <div className="page-shell">
+            <div className="page-header">
+                <div>
+                    <h1 className="page-title">{project.name}</h1>
+                    <p className="subtitle">
+                        👤 {project.owner?.username} (creador)
+                        {project.members?.length > 0 && ` • ${project.members.length} colaborador(es)`}
+                    </p>
+                </div>
+                <div className="topbar-actions">
+                    <button
+                        onClick={() => setShowInvite(!showInvite)}
+                        className={showInvite ? 'button button-secondary' : 'button button-primary'}
+                    >
+                        {showInvite ? 'Cancelar' : '👥 Invitar'}
+                    </button>
+                    <button
+                        onClick={() => { setSelectedTask(null); setShowModal(true); }}
+                        className="button button-secondary"
+                    >
+                        + Nueva Tarea
+                    </button>
+                </div>
             </div>
+
+            {showInvite && (
+                <InviteMember
+                    projectId={id}
+                    onInvite={() => { loadProject(); setShowInvite(false); }}
+                />
+            )}
 
             <SearchFilter onFilter={handleFilter} members={project.members || []} />
 
@@ -120,12 +144,7 @@ const ProjectBoard = () => {
                 onDragStart={handleDragStart}
                 onDragEnd={handleDragEnd}
             >
-                <div style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(3, 1fr)',
-                    gap: '1rem',
-                    marginTop: '1rem'
-                }}>
+                <div className="cards-grid">
                     {COLUMNS.map(col => (
                         <Column
                             key={col.id}

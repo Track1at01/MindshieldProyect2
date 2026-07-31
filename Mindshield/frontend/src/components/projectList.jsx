@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../api';
+import './projectList.css';
 
 const ProjectList = () => {
     const [projects, setProjects] = useState([]);
@@ -37,71 +38,46 @@ const ProjectList = () => {
     if (loading) return <div>Cargando...</div>;
 
     return (
-        <div>
-            <h1 style={{ marginBottom: '1.5rem' }}>Mis Proyectos</h1>
-            
-            <form onSubmit={createProject} style={{
-                display: 'flex',
-                gap: '0.5rem',
-                marginBottom: '2rem',
-                background: 'white',
-                padding: '1rem',
-                borderRadius: '8px'
-            }}>
+        <div className="page-shell">
+            <div className="page-header">
+                <div>
+                    <h1 className="page-title">Mis Proyectos</h1>
+                    <p className="subtitle">Administra tus tableros y crea nuevas iniciativas con estilo.</p>
+                </div>
+            </div>
+
+            <form onSubmit={createProject} className="filter-panel project-form">
                 <input
                     placeholder="Nombre del proyecto"
                     value={newProject.name}
                     onChange={(e) => setNewProject({ ...newProject, name: e.target.value })}
                     required
-                    style={{ flex: 1, padding: '0.5rem', border: '1px solid #ddd', borderRadius: '4px' }}
+                    className="input-field"
                 />
                 <input
                     placeholder="Descripción (opcional)"
                     value={newProject.description}
                     onChange={(e) => setNewProject({ ...newProject, description: e.target.value })}
-                    style={{ flex: 2, padding: '0.5rem', border: '1px solid #ddd', borderRadius: '4px' }}
+                    className="input-field"
                 />
-                <button type="submit" style={{
-                    padding: '0.5rem 1rem',
-                    background: '#16213e',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '4px',
-                    cursor: 'pointer'
-                }}>
+                <button type="submit" className="button button-primary">
                     Crear
                 </button>
             </form>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1rem' }}>
+            <div className="cards-grid">
                 {projects.map(project => (
-                    <div key={project.id} style={{
-                        background: 'white',
-                        padding: '1.5rem',
-                        borderRadius: '8px',
-                        boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-                    }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
-                            <Link to={`/projects/${project.id}`} style={{
-                                fontSize: '1.25rem',
-                                fontWeight: 'bold',
-                                color: '#16213e',
-                                textDecoration: 'none'
-                            }}>
+                    <div key={project.id} className="card">
+                        <div className="project-card-header">
+                            <Link to={`/projects/${project.id}`} className="card-title project-card-title">
                                 {project.name}
                             </Link>
-                            <button onClick={() => deleteProject(project.id)} style={{
-                                background: 'none',
-                                border: 'none',
-                                color: '#e94560',
-                                cursor: 'pointer',
-                                fontSize: '1.2rem'
-                            }}>
+                            <button onClick={() => deleteProject(project.id)} className="icon-button" aria-label="Eliminar proyecto">
                                 ×
                             </button>
                         </div>
-                        <p style={{ color: '#666', marginTop: '0.5rem' }}>{project.description}</p>
-                        <div style={{ marginTop: '1rem', fontSize: '0.875rem', color: '#999' }}>
+                        <p className="subtitle project-card-description">{project.description}</p>
+                        <div className="meta-row project-meta-row">
                             Creado: {new Date(project.created_at).toLocaleDateString()}
                         </div>
                     </div>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
+import './register.css';
 
 const Register = () => {
     const [form, setForm] = useState({ email: '', username: '', password: '' });
@@ -28,41 +29,45 @@ const Register = () => {
     };
 
     return (
-        <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            minHeight: '100vh',
-            background: '#1a1a2e'
-        }}>
-            <form onSubmit={handleSubmit} style={{
-                background: 'white',
-                padding: '2rem',
-                borderRadius: '8px',
-                width: '100%',
-                maxWidth: '400px'
-            }}>
-                <h2 style={{ textAlign: 'center', marginBottom: '1.5rem' }}>Registro</h2>
-                {error && <div style={{ color: '#e94560', marginBottom: '1rem', textAlign: 'center' }}>{error}</div>}
-                <div style={{ marginBottom: '1rem' }}>
-                    <input name="email" type="email" placeholder="Email" value={form.email} onChange={handleChange} required
-                        style={{ width: '100%', padding: '0.75rem', border: '1px solid #ddd', borderRadius: '4px' }} />
+        <div className="auth-page">
+            <form onSubmit={handleSubmit} className="auth-card">
+                <h2 className="page-title auth-card-title">Registro</h2>
+                {error && <div className="alert alert-error">{error}</div>}
+                <div className="form-group">
+                    <input
+                        name="email"
+                        type="email"
+                        placeholder="Email"
+                        value={form.email}
+                        onChange={handleChange}
+                        required
+                        className="input-field"
+                    />
                 </div>
-                <div style={{ marginBottom: '1rem' }}>
-                    <input name="username" placeholder="Usuario" value={form.username} onChange={handleChange} required
-                        style={{ width: '100%', padding: '0.75rem', border: '1px solid #ddd', borderRadius: '4px' }} />
+                <div className="form-group">
+                    <input
+                        name="username"
+                        placeholder="Usuario"
+                        value={form.username}
+                        onChange={handleChange}
+                        required
+                        className="input-field"
+                    />
                 </div>
-                <div style={{ marginBottom: '1.5rem' }}>
-                    <input name="password" type="password" placeholder="Contraseña" value={form.password} onChange={handleChange} required
-                        style={{ width: '100%', padding: '0.75rem', border: '1px solid #ddd', borderRadius: '4px' }} />
+                <div className="form-group">
+                    <input
+                        name="password"
+                        type="password"
+                        placeholder="Contraseña"
+                        value={form.password}
+                        onChange={handleChange}
+                        required
+                        className="input-field"
+                    />
                 </div>
-                <button type="submit" style={{
-                    width: '100%', padding: '0.75rem', background: '#16213e', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer'
-                }}>
-                    Registrarse
-                </button>
-                <p style={{ textAlign: 'center', marginTop: '1rem' }}>
-                    <Link to="/login" style={{ color: '#16213e' }}>¿Ya tienes cuenta? Inicia sesión</Link>
+                <button type="submit" className="button button-primary">Registrarse</button>
+                <p className="auth-footer">
+                    <Link to="/login" className="button button-ghost auth-footer-link">¿Ya tienes cuenta? Inicia sesión</Link>
                 </p>
             </form>
         </div>

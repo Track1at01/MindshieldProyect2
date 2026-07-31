@@ -13,12 +13,20 @@ class ProjectCreate(ProjectBase):
 class ProjectUpdate(ProjectBase):
     name: Optional[str] = Field(None, min_length=1, max_length=200)
 
+class MemberResponse(BaseModel):
+    project_id: int
+    user_id: int
+    user: UserResponse
+
+    class Config:
+        from_attributes = True
+
 class ProjectResponse(ProjectBase):
     id: int
     owner_id: int
     created_at: datetime
     owner: Optional[UserResponse] = None
-    members: List[UserResponse] = []
-    
+    members: List[MemberResponse] = []
+
     class Config:
         from_attributes = True

@@ -1,0 +1,23 @@
+.invite-card {
+  margin-bottom: 1.5rem;
+}
+
+.invite-card .subtitle {
+  margin-bottom: 0.75rem;
+  color: #f1f2f6;
+}
+
+.invite-form {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.invite-form .input-field {
+  flex: 1;
+  min-width: 160px;
+}
+
+.invite-form button {
+  min-width: 120px;
+}
