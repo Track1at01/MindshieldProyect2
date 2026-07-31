@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet, Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../context/Authcontext.jsx';
 import './layout.css';
 
 const Layout = () => {
