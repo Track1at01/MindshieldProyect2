@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import api from '../api';
 import Comments from './Comments';
 import './taskModal.css';
+import ActivityLog from './ActivityLog';
 
 
 const TaskModal = ({ task, projectId, members, onClose, onSave }) => {
@@ -151,6 +152,7 @@ const TaskModal = ({ task, projectId, members, onClose, onSave }) => {
                         <hr className="divider" />
                         <Comments taskId={task.id} />
                         <hr className="divider" />
+                        <ActivityLog taskId={task.id} />
                     </>
                 )}
             </div>

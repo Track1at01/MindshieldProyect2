@@ -5,6 +5,7 @@ from app.models.activity import Activity
 from app.schemas.project import ProjectCreate, ProjectUpdate
 from app.exceptions import NotFoundException, ForbiddenException
 
+
 def get_project(db: Session, project_id: int, user_id: int) -> Project:
     project = db.query(Project).filter(Project.id == project_id).first()
     if not project:

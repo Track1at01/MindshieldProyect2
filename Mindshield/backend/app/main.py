@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.exc import OperationalError
 from app.database import engine, Base
-from app.routers import auth_router, projects_router, tasks_router, comments_router, websocket_router
+from app.routers import auth_router, projects_router, tasks_router, comments_router, activities_router, websocket_router
 from app.exceptions import KanbanException
 
 # Create tables if the database is available
@@ -36,6 +36,7 @@ app.include_router(auth_router)
 app.include_router(projects_router)
 app.include_router(tasks_router)
 app.include_router(comments_router)
+app.include_router(activities_router)
 app.include_router(websocket_router)
 
 @app.get("/health")
