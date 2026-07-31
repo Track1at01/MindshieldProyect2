@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import api from '../api';
-import Comments from './Comments';
+import api from '../api.jsx';
+import Comments from './Comments.jsx';
 import './taskModal.css';
-import ActivityLog from './ActivityLog';
+import ActivityLog from './ActivityLog.jsx';
 
 
 const TaskModal = ({ task, projectId, members, onClose, onSave }) => {

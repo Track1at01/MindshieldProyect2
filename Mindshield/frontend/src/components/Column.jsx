@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDroppable } from '@dnd-kit/core';
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
-import TaskCard from './TaskCard';
+import TaskCard from './TaskCard.jsx';
 import './column.css';
 
 const Column = ({ id, title, color, tasks, onTaskClick }) => {

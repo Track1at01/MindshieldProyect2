@@ -2,13 +2,13 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { DndContext, closestCorners, DragOverlay } from '@dnd-kit/core';
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
-import api from '../api';
+import api from '../api.jsx';
 import { useWebSocket } from '../hooks/useWebSocket';
-import Column from './Column';
-import TaskCard from './TaskCard';
-import TaskModal from './TaskModal';
-import SearchFilter from './SearchFilter';
-import InviteMember from './InviteMember';
+import Column from './Column.jsx';
+import TaskCard from './TaskCard.jsx';
+import TaskModal from './TaskModal.jsx';
+import SearchFilter from './SearchFilter.jsx';
+import InviteMember from './InviteMember.jsx';
 import './ProjectBoard.css';
 
 const COLUMNS = [

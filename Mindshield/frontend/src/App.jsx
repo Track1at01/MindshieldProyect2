@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
-import Layout from './components/Layout';
-import Login from './components/Login';
-import Register from './components/Register';
-import ProjectList from './components/ProjectList';
-import ProjectBoard from './components/ProjectBoard';
+import Layout from './components/Layout.jsx';
+import Login from './components/Login.jsx';
+import Register from './components/Register.jsx';
+import ProjectList from './components/ProjectList.jsx';
+import ProjectBoard from './components/ProjectBoard.jsx';
 
 function App() {
     return (

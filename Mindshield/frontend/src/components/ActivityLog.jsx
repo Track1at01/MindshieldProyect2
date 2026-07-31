@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import api from '../api';
+import api from '../api.jsx';
 import './ActivityLog.css'
 const ActivityLog = ({ taskId }) => {
     const [activities, setActivities] = useState([]);

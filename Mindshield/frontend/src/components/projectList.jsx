@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import api from '../api';
+import api from '../api.jsx';
 import './projectList.css';
 
 const ProjectList = () => {
