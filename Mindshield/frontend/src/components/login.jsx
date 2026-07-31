@@ -24,7 +24,7 @@ const Login = () => {
     return (
         <div className="auth-page">
             <form onSubmit={handleSubmit} className="auth-card">
-                <h2 className="page-title auth-card-title">Iniciar Sesión</h2>
+                <h2 className="page-title auth-card-title">Inicia sesión</h2>
                 {error && <div className="alert alert-error">{error}</div>}
                 <div className="form-group">
                     <input
@@ -48,7 +48,7 @@ const Login = () => {
                 </div>
                 <button type="submit" className="button button-primary">Entrar</button>
                 <p className="auth-footer">
-                    <Link to="/register" className="button button-ghost auth-footer-link">¿No tienes cuenta? Regístrate</Link>
+                    <Link to="/register" className="button button-ghost auth-footer-link">Sin cuenta?</Link>
                 </p>
             </form>
         </div>

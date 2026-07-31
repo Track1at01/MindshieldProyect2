@@ -27,7 +27,7 @@ def get_task_activities(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):
-    from app.services.task import get_task
+    from app.services.tasks import get_task
     get_task(db, task_id, current_user.id)
     return db.query(Activity).filter(
         Activity.task_id == task_id

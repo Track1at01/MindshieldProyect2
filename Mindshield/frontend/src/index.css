@@ -95,15 +95,7 @@ img {
   transform: translateY(-1px);
 }
 
-.button-primary {
-  background: linear-gradient(135deg, #e94560, #ff6e80);
-  color: #fff;
-  box-shadow: 0 18px 36px rgba(233, 69, 96, 0.24);
-}
 
-.button-primary:hover {
-  background: linear-gradient(135deg, #ff5d75, #ff7f8f);
-}
 
 .button-secondary {
   background: rgba(255, 255, 255, 0.06);
